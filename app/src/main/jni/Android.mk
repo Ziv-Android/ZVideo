@@ -4,7 +4,7 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE := AVIPlayer
 LOCAL_SRC_FILES := Common.cpp com_ziv_zvideo_AbstractPlayerActivity.cpp
-
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/include
 LOCAL_STATIC_LIBRARIES += avilib_static
 
 include $(BUILD_SHARED_LIBRARY)
