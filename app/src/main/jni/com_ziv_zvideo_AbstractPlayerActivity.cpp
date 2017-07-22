@@ -13,6 +13,15 @@ extern "C" {
 JNIEXPORT jlong JNICALL Java_com_ziv_zvideo_AbstractPlayerActivity_open
   (JNIEnv *env, jclass clazz, jstring fileName){
     avi_t* avi = 0;
+    const char* cFileName = env->GetStringUTFChars(fileName, NULL);
+    if (0 == cFileName){
+        goto exit;
+    }
+
+    exit:
+    if (0 == avi){
+        ThrowException(env, "java/io/IOException", AVI_strerror());
+    }
 }
 
 /*

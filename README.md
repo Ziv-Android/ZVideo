@@ -11,7 +11,7 @@
     #include "config.h"
     #endif
     ```
-2. 编辑Android.mk文件
+2. 在avilib目录下创建Android.mk文件
     ```makefile
     LOCAL_PATH := $(call my-dir)
     
@@ -38,4 +38,20 @@
     include $(BUILD_SHARED_LIBRARY)
     ```
 3. 创建Android工程并实现简单GUI界面
-4. 实现native调用，渲染
+4. 复制文件夹transcode-1.1.7到`NDK_HOME/sources`目录下
+5. 以共享库的形式添加工程native依赖，编辑工程中的Android.mk文件
+    ```makefile
+    LOCAL_PATH := $(call my-dir)
+    
+    include $(CLEAR_VARS)
+    
+    LOCAL_MODULE := AVIPlayer
+    LOCAL_SRC_FILES := Common.cpp com_ziv_zvideo_AbstractPlayerActivity.cpp
+    
+    LOCAL_STATIC_LIBRARIES += avilib_static
+    
+    include $(BUILD_SHARED_LIBRARY)
+    
+    $(call import-module, transcode-1.1.7/avilib)
+    ```
+6. 实现native调用，渲染视频，展示
