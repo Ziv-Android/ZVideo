@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import java.io.IOException;
 
 /**
+ * 抽象播放器基本功能
+ *
  * Created by ziv on 2017/7/20.
  */
 
