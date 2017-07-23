@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // 获取单选按钮ID
         int radioButtonId = playRadio.getCheckedRadioButtonId();
         switch (radioButtonId) {
-            case 1:
-
+            case R.id.bitmap_player_radio:
+                intent = new Intent(this, BitmapPlayerActivity.class);
                 break;
             default:
                 throw new UnsupportedOperationException("radioID=" + radioButtonId);
