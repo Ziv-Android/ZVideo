@@ -6,6 +6,11 @@
     android:orientation="vertical"
     tools:context="com.ziv.zvideo.MainActivity">
 
+    <TextView
+        android:id="@+id/sdcard_info_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <EditText
         android:id="@+id/file_name_edit"
         android:layout_width="match_parent"
@@ -13,24 +18,27 @@
         android:ems="10"
         android:hint="@string/file_name_hint"
         android:text="@string/file_name_text">
-        <requestFocus/>
+
+        <requestFocus />
     </EditText>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <RadioGroup
             android:id="@+id/player_radio_group"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
+
             <RadioButton
                 android:id="@+id/bitmap_player_radio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="@string/bitmap_player_radio"/>
+                android:text="@string/bitmap_player_radio" />
         </RadioGroup>
 
         <Button
@@ -38,7 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/play_button"/>
+            android:text="@string/play_button" />
     </LinearLayout>
 
 </LinearLayout>

@@ -1,17 +1,23 @@
 package com.ziv.zvideo;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StatFs;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.Formatter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private TextView sdcardInfo;
     private EditText fileName;
     private RadioGroup playRadio;
     private Button playBtn;
@@ -22,9 +28,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         initView();
+        getSDCardInfo();
     }
 
     private void initView() {
+        sdcardInfo = (TextView) findViewById(R.id.sdcard_info_text);
         fileName = (EditText) findViewById(R.id.file_name_edit);
         playRadio = (RadioGroup) findViewById(R.id.player_radio_group);
         playBtn = (Button) findViewById(R.id.player_button);
@@ -59,5 +67,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             // 启动PlayerActivity
             startActivity(intent);
         }
+    }
+
+    private void getSDCardInfo(){
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())){
+            File path = Environment.getExternalStorageDirectory();
+            StatFs stat = new StatFs(path.getPath());
+            long blockSize = 0;
+            long totalBlock = 0;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                blockSize = stat.getBlockSizeLong();
+                totalBlock = stat.getBlockCountLong();
+            }else {
+                blockSize = stat.getBlockSize();
+                totalBlock = stat.getBlockCount();
+            }
+            sdcardInfo.setText("SDCard size = " + formant(totalBlock * blockSize));
+        }
+    }
+
+    private String formant(long size){
+        return Formatter.formatFileSize(this, size);
     }
 }
