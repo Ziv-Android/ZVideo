@@ -56,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.bitmap_player_radio:
                 intent = new Intent(this, BitmapPlayerActivity.class);
                 break;
+            case R.id.open_dl_player_radio:
+                intent = new Intent(this, OpenGLPlayerActivity.class);
+                break;
             default:
                 throw new UnsupportedOperationException("radioID=" + radioButtonId);
         }
