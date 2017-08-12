@@ -10,7 +10,6 @@ import android.text.format.Formatter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.NumberPicker;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -59,6 +58,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.open_dl_player_radio:
                 intent = new Intent(this, OpenGLPlayerActivity.class);
                 break;
+            case R.id.native_window_player_radio:
+                intent = new Intent(this, NativeWindowPlayerActivity.class);
+                break;
             default:
                 throw new UnsupportedOperationException("radioID=" + radioButtonId);
         }
@@ -72,8 +74,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void getSDCardInfo(){
-        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())){
+    private void getSDCardInfo() {
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
             File path = Environment.getExternalStorageDirectory();
             StatFs stat = new StatFs(path.getPath());
             long blockSize = 0;
@@ -81,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                 blockSize = stat.getBlockSizeLong();
                 totalBlock = stat.getBlockCountLong();
-            }else {
+            } else {
                 blockSize = stat.getBlockSize();
                 totalBlock = stat.getBlockCount();
             }
@@ -89,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private String formant(long size){
+    private String formant(long size) {
         return Formatter.formatFileSize(this, size);
     }
 }
